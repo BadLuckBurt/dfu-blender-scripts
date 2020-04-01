@@ -25,7 +25,7 @@ for h, obj_list in enumerate(data['RdbBlock']['ObjectRootList']):
     objects = obj_list['RdbObjects']
     if objects is None:
         continue
-    # Only load in 3D models, not the flats etc.
+    # Load in 3D models and flats.
     for i, model in enumerate(objects):
 
         if 'ModelResource' in model['Resources']:
@@ -35,8 +35,8 @@ for h, obj_list in enumerate(data['RdbBlock']['ObjectRootList']):
             XPos = (model['XPos'] / 40)  # X coordinate
             YPos = (model['YPos'] / 40) * -1  # Daggerfall YPos = Z coordinate in Blender
             ZPos = (model['ZPos'] / 40)  # Daggerfall ZPos = Y coordinate in Blender
-            YRotation = model['Resources']['ModelResource'][
-                            'YRotation'] / 5.68888888888889  # Dagger YRotation = Z rotation in Blender
+            # Dagger YRotation = Z rotation in Blender
+            YRotation = model['Resources']['ModelResource']['YRotation'] / 5.68888888888889
 
             blendfile = "D:/scaled/" + modelId + ".dae.blend"
             section = "\\Object\\"
